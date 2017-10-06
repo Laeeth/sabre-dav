@@ -339,8 +339,8 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(200, $s->httpResponse->status,'Invalid status received. Response body: '. $s->httpResponse->body);
         $obj = VObject\Reader::read($s->httpResponse->body);
 
-        $this->assertEquals(0,count($obj->VTIMEZONE));
-        $this->assertEquals(0,count($obj->VEVENT));
+        $this->assertNull($obj->VTIMEZONE);
+        $this->assertNull($obj->VEVENT);
 
     }
 
@@ -415,8 +415,8 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(200, $s->httpResponse->status,'Invalid status received. Response body: '. $s->httpResponse->body);
         $obj = VObject\Reader::read($s->httpResponse->body);
 
-        $this->assertEquals(0,count($obj->VTIMEZONE));
-        $this->assertEquals(1,count($obj->VEVENT));
+        $this->assertNull($obj->VTIMEZONE);
+        $this->assertEquals(1, count($obj->VEVENT));
 
     }
 
@@ -571,9 +571,9 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(200, $s->httpResponse->status,'Invalid status received. Response body: '. $s->httpResponse->body);
         $obj = VObject\Reader::read($s->httpResponse->body);
 
-        $this->assertEquals(1,count($obj->VTIMEZONE));
-        $this->assertEquals(1,count($obj->VEVENT));
-        $this->assertEquals(0,count($obj->VTODO));
+        $this->assertEquals(1, count($obj->VTIMEZONE));
+        $this->assertEquals(1, count($obj->VEVENT));
+        $this->assertNull($obj->VTODO);
 
     }
 
@@ -615,9 +615,9 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(200, $s->httpResponse->status,'Invalid status received. Response body: '. $s->httpResponse->body);
         $obj = VObject\Reader::read($s->httpResponse->body);
 
-        $this->assertEquals(0,count($obj->VTIMEZONE));
-        $this->assertEquals(0,count($obj->VEVENT));
-        $this->assertEquals(1,count($obj->VTODO));
+        $this->assertNull($obj->VTIMEZONE);
+        $this->assertNull($obj->VEVENT);
+        $this->assertEquals(1, count($obj->VTODO));
 
     }
 
